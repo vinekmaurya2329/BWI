@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import NavBar from './NavBar';
 import Swal from 'sweetalert2'
 
+
 function HomePage() {
     const [product,setProduct]= useState([]);
-    const [fProduct,setFProduct]= useState([])
-    const cartArray =[];
+    const [fProduct,setFProduct]= useState([]);
+    const [cartArray,setCartArrya]= useState([])
+    // const cartArray =[];
     const [cartTotalPrice,setCartTotalPrice] = useState(0)
     const [searchValue,setSearchValue] = useState('');
     const [minVal,setMinVal]= useState(1);
@@ -26,7 +28,8 @@ function HomePage() {
     },[]);
 
     function addcart(item){
-cartArray.push(item)
+// cartArray.push(item)
+setCartArrya(prev=> [...prev,item])
 Swal.fire('congrats','Added to Cart','success');
 console.log(cartArray,'cartarray');
 
@@ -102,7 +105,8 @@ console.log(cartArray,'cartarray');
      { product.products &&
          product.products.length >0 ? product.products.map((item)=>{
             return  <div className="card-image">
-            <img src={item.images[0]} alt="" />
+             
+            <img src={item.thumbnail} alt="" />
 <div className="card-details">
             <h3>{item.brand}</h3>
             <h5>{item.title}</h5>
